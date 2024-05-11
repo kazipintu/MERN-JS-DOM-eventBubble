@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM-Event Bubble Event</title>
+</head>
+
+<body>
+  <section id="section-container">
+    <h1> Event Bubble </h1>
+    <ul id="list-container">
+      <h3>Bubble is here</h3>
+      <li id="first-item" class="item">List Item Lorem-1</li><br>
+      <li id="second-item" class="item">List Item Lorem-2</li><br>
+      <li class="item">List Item Lorem-3</li>
+      <li class="item">List Item Lorem-4</li>
+      <li class="item">List Item Lorem-5</li>
+    </ul>
+  </section>
+
+  <script>
+
+    /*  ~ EVENT stopPropagation or stopImmediatePropagation ~  */
+
+    document.getElementById('first-item').addEventListener('click', function (eventFirstItem) {
+      console.log('first-item is clicked');
+      eventFirstItem.stopPropagation();
+
+    })
+
+    document.getElementById('second-item').addEventListener('click', function (eventSecondItem) {
+      console.log('second-item is clicked');
+      eventSecondItem.stopPropagation();
+
+    })
+
+    document.getElementById('list-container').addEventListener('click', function (eventListContainer) {
+      console.log('list-container is clicked');
+      eventListContainer.stopImmediatePropagation();
+
+    })
+
+    document.getElementById('section-container').addEventListener('click', function (eventSectionContainer) {
+      console.log('section-container is clicked');
+      eventSectionContainer.stopImmediatePropagation();
+
+    })
+
+    /*  ~ EVENT stopPropagation or stopImmediatePropagation DOESN'T ALLOW BELOW CODE TO FIRE ~  */
+
+    document.getElementById('section-container').addEventListener('click', function () {
+      console.log('section-container is clicked');
+    })
+    document.getElementById('section-container').addEventListener('click', function () {
+      console.log('section-container is clicked');
+    })
+    document.getElementById('section-container').addEventListener('click', function () {
+      console.log('section-container is clicked');
+    })
+    document.getElementById('section-container').addEventListener('click', function () {
+      console.log('section-container is clicked');
+    })
+
+
+    /*adding eventlistener to any parent element,
+      propgates/applies/shares the effect on the child elements also.*/
+
+  </script>
+
+</body>
+
+</html>
